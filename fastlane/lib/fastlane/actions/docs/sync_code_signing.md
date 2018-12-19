@@ -64,9 +64,8 @@ For more information about the concept, visit [codesigning.guide](https://codesi
 
 ### Setup
 
-1. Create a **new, private Git repo** (e.g. on [GitHub](https://github.com/new) or [BitBucket](https://bitbucket.org/repo/create)) and name it something like `certificates`. **Important:** Make sure the repository is set to *private*.
-2. Optional: Create a **new, shared Apple Developer Portal account**, something like `office@company.com` that will be shared across your team from now on (for more information visit [codesigning.guide](https://codesigning.guide))
-3. Run the following in your project folder to start using _match_:
+1. Optional: Create a **new, shared Apple Developer Portal account**, something like `office@company.com`, that will be shared across your team from now on (for more information visit [codesigning.guide](https://codesigning.guide))
+2. Run the following in your project folder to start using _match_:
 
 ```no-highlight
 fastlane match init
@@ -80,7 +79,10 @@ You'll be asked if you want to store your code signing identities inside a Git r
 
 Use Git Storage to store all code signing identities in a private git repo, owned and operated by you. The files will be encrypted using OpenSSL.
 
-First, enter the URL to your Git repo. This can be either a `https://` or a `git` URL. (If your machine is currently using SSH to authenticate with GitHub, you'll want to use a `git` URL, otherwise you may see an authentication error when you attempt to use match.) `fastlane match init` won't read or modify your certificates or profiles yet, and also won't validate your git URL.
+Create a new, private Git repo (e.g. on [GitHub](https://github.com/new) or [BitBucket](https://bitbucket.org/repo/create)) and name it something like `certificates`.  
+**Important:** Make sure the repository is set to *private*.
+
+Then, enter the URL to your Git repo. This can be either a `https://` or a `git` URL. (If your machine is currently using SSH to authenticate with GitHub, you'll want to use a `git` URL, otherwise you may see an authentication error when you attempt to use match.) `fastlane match init` won't read or modify your certificates or profiles yet, and also won't validate your git URL.
 
 This will create a `Matchfile` in your current directory (or in your `./fastlane/` folder).
 
