@@ -156,27 +156,27 @@ module Match
         return fastlane_folder_gc_keys_path if File.exist?(fastlane_folder_gc_keys_path)
 
         # User doesn't seem to have provided a keys file
-        UI.message("Looks like you don't have a Google Cloud #{DEFAULT_KEYS_FILE_NAME.cyan} file yet")
-        UI.message("If you have one, make sure to put it into the '#{Dir.pwd}' directory and call it '#{DEFAULT_KEYS_FILE_NAME.cyan}'")
+        UI.message("Looks like you don't have a Google Cloud #{DEFAULT_KEYS_FILE_NAME.cyan} file yet.")
+        UI.message("If you have one, make sure to put it into the '#{Dir.pwd}' directory and call it '#{DEFAULT_KEYS_FILE_NAME.cyan}'.")
         unless UI.confirm("Do you want fastlane to help you to create a #{DEFAULT_KEYS_FILE_NAME} file?")
           UI.user_error!("Process stopped, run fastlane again to start things up again")
         end
 
-        UI.message("fastlane will help you create a keys file. First, open the following website")
+        UI.message("fastlane will help you create a keys file. First, open the following website:")
         UI.message("")
         UI.message("\t\thttps://console.cloud.google.com".cyan)
         UI.message("")
-        UI.input("Press enter once you're logged in")
+        UI.input("Press [Enter] once you're logged in")
 
-        UI.message("Now it's time to generate a new JSON auth file for fastlane to access Google Cloud")
+        UI.message("Now it's time to generate a new JSON auth file for fastlane to access Google Cloud.")
         UI.message("First, switch to the Google Cloud project you want to use.")
-        UI.message("If you don't have one yet, create a new one and switch to it")
+        UI.message("If you don't have one yet, create a new one and switch to it.")
         UI.message("")
         UI.message("\t\thttps://console.cloud.google.com/apis/credentials".cyan)
         UI.message("")
-        UI.input("Ensure the right project is selected on top of the page and confirm with enter")
+        UI.input("Ensure the right project is selected on top of the page and confirm with [Enter]")
 
-        UI.message("Now create a new JSON auth file by clicking on")
+        UI.message("Now create a new JSON auth file:")
         UI.message("")
         UI.message("\t\t 1. Create credentials".cyan)
         UI.message("\t\t 2. Service account key".cyan)
@@ -184,21 +184,23 @@ module Match
         UI.message("\t\t 4. JSON".cyan)
         UI.message("\t\t 5. Create".cyan)
         UI.message("")
-        UI.input("Confirm with enter once you created and download the JSON file")
+        UI.input("Confirm with [Enter] once you created and downloaded the JSON file")
 
         UI.message("Copy the file to the current directory (#{Dir.pwd})")
         UI.message("and rename it to `#{DEFAULT_KEYS_FILE_NAME.cyan}`")
         UI.message("")
-        UI.input("Confirm with enter")
+        UI.input("Confirm with [Enter]")
 
         until File.exist?(DEFAULT_KEYS_FILE_NAME)
           UI.message("Make sure to place the file in '#{Dir.pwd.cyan}' and name it '#{DEFAULT_KEYS_FILE_NAME.cyan}'")
-          UI.input("Confirm with enter")
+          UI.message("")
+          UI.input("Confirm with [Enter]")
         end
 
         UI.important("Please never add the #{DEFAULT_KEYS_FILE_NAME.cyan} file in version control.")
-        UI.important("Instead please add the file to your .gitignore")
-        UI.input("Confirm with enter")
+        UI.important("Instead please add the file to your `.gitignore` file")
+        UI.message("")
+        UI.input("Confirm with [Enter]")
 
         return DEFAULT_KEYS_FILE_NAME
       end
