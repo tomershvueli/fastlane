@@ -53,6 +53,7 @@ module Spaceship
       # @param subscription_free_trial (String) Free Trial duration (1w,1m,3m....)
       # @param subscription_duration (String) 1w,1m.....
       # @param subscription_price_target (Hash) Only used on RECURRING purchases, used to set the
+      # @param enable_content_hosting (Boolean): Enable hosting of files through iTunes Connect
       # price of all the countries to be roughly the same as the price calculated from the price
       # tier and currency given as input.
       # @example:
@@ -71,7 +72,8 @@ module Spaceship
                   family_id: nil,
                   subscription_free_trial: nil,
                   subscription_duration: nil,
-                  subscription_price_target: nil)
+                  subscription_price_target: nil,
+                  enable_content_hosting: nil)
         client.create_iap!(app_id: self.application.apple_id,
                            type: type,
                            versions: versions,
@@ -83,7 +85,8 @@ module Spaceship
                            pricing_intervals: pricing_intervals,
                            family_id: family_id,
                            subscription_duration: subscription_duration,
-                           subscription_free_trial: subscription_free_trial)
+                           subscription_free_trial: subscription_free_trial,
+                           enable_content_hosting: enable_content_hosting)
 
         # Update pricing for a recurring subscription.
         if type == Spaceship::Tunes::IAPType::RECURRING &&
