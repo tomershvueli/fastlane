@@ -1284,7 +1284,7 @@ module Spaceship
     end
 
     # Creates an In-App-Purchases
-    def create_iap!(app_id: nil, type: nil, versions: nil, reference_name: nil, product_id: nil, cleared_for_sale: true, review_notes: nil, review_screenshot: nil, pricing_intervals: nil, family_id: nil, subscription_duration: nil, subscription_free_trial: nil, enable_content_hosting: nil)
+    def create_iap!(app_id: nil, type: nil, versions: nil, reference_name: nil, product_id: nil, cleared_for_sale: true, review_notes: nil, review_screenshot: nil, pricing_intervals: nil, family_id: nil, subscription_duration: nil, subscription_free_trial: nil, enable_content_hosting: false)
       # Load IAP Template based on Type
       type ||= "consumable"
       r = request(:get, "ra/apps/#{app_id}/iaps/#{type}/template")
@@ -1330,6 +1330,7 @@ module Spaceship
 
       if enable_content_hosting
         data["versions"][0]["contentHosting"] = { value: true }
+      end
 
       if review_screenshot
         # Upload Screenshot:
